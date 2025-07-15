@@ -15,7 +15,7 @@
   <header class="header">
     <div class="header__inner">
       <a class="header__logo" href="/">
-        Contact Form
+        お問い合わせ
       </a>
     </div>
   </header>
