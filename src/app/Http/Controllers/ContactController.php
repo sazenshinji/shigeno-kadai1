@@ -41,4 +41,11 @@ class ContactController extends Controller
     // Contact::create($contact);
     return view('thanks');
   }
+
+  // Login画面の表示
+  public function login()
+  {
+    return view('admin');
+  }
+
 }
