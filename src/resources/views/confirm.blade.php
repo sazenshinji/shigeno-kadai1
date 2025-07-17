@@ -6,12 +6,13 @@
 
 @section('content')
 
-  <?php print_r($contact) ?>             $contact の中身をブラウザに表示する。
+  <?php print_r($contact) ?>
+
   <!-- <?php print_r($contact['name']) ?> -->      <!-- 名前のみ取得したい場合。 -->
 
     <div class="confirm__content">
       <div class="confirm__heading">
-        <h2>お問い合わせ内容確認</h2>
+        <h2>Confirm</h2>
       </div>
       <form class="form" action="/contacts" method="post">
         @csrf   
@@ -68,6 +69,13 @@
               <th class="confirm-table__header">建物名</th>
               <td class="confirm-table__text">
                 <input type="text" name="building" value="{{ $contact['building'] }}" readonly />
+              </td>
+            </tr>
+
+            <tr class="confirm-table__row">
+              <th class="confirm-table__header">お問い合わせの種類</th>
+              <td class="confirm-table__text">
+                <p >※値の取得方法が分からない※</p>
               </td>
             </tr>
 
