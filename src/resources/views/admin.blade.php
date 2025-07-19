@@ -59,7 +59,6 @@
             </td>
 
 
-
             <td class="confirm-table__text">
               <form class="delete-form" action="/todos/delete" method="post">
                 @method('DELETE')

@@ -25,10 +25,12 @@ class ContactController extends Controller
   // public function confirm (Request $request){
 
     $contact = $request->only(['name', 'first_name', 'gender',  'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'category_id', 'content']);
+    // $categories = Category::all();
+    $category_tb = Category::find($contact['category_id']);
+    $category = $category_tb->content;
 
-    $categories = Category::all();
-
-    return view('confirm', ['contact' => $contact]);
+    // return view('confirm', ['contact' => $contact]);
+    return view('confirm', compact('contact','category'));
 
   }
 
