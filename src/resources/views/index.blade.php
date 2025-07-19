@@ -28,7 +28,14 @@
               @error('name')
               {{ $message }}
               @enderror
+              @error('first_name')
+              {{ $message }}
+              @enderror
             </div>
+
+
+
+
           </div>
         </div>
 
@@ -85,7 +92,13 @@
             </div>
             <div class="form__error">
               <!--バリデーション機能を実装したら記述します。-->
-              @error('tel')
+              @error('tel1')
+              {{ $message }}
+              @enderror
+              @error('tel2')
+              {{ $message }}
+              @enderror
+              @error('tel3')
               {{ $message }}
               @enderror
             </div>
@@ -118,12 +131,6 @@
             <div class="form__input--text">
               <input type="text" name="building" placeholder="例：千駄ヶ谷マンション101" value="{{ old('building') }}" />
             </div>
-            <div class="form__error">
-              <!--バリデーション機能を実装したら記述します。-->
-              @error('building')
-              {{ $message }}
-              @enderror
-            </div>
           </div>
         </div>
 
@@ -146,7 +153,7 @@
             </div>
             <div class="form__error">
               <!--バリデーション機能を実装したら記述します。-->
-              @error('content')
+              @error('category_id')
               {{ $message }}
               @enderror
             </div>

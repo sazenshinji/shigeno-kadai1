@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Contact;
+use App\Http\Requests\ContactRequest;
 
 class ContactController extends Controller
 {
@@ -20,8 +21,8 @@ class ContactController extends Controller
   }
 
   // 入力画面で「確認画面]ボタンをクリック
-  // public function confirm (ContactRequest $request){
-  public function confirm (Request $request){
+  public function confirm (ContactRequest $request){
+  // public function confirm (Request $request){
 
     $contact = $request->only(['name', 'first_name', 'gender',  'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'category_id', 'content']);
 
@@ -32,8 +33,7 @@ class ContactController extends Controller
   }
 
   // 確認画面で「送信]ボタンをクリック
-  // public function store (ContactRequest $request){
-  public function store (Request $request){
+   public function store (Request $request){
     $contact = $request->only(['name', 'first_name', 'gender',  'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'category_id', 'content']);
 
     // $contact = $request->only(['name']);
@@ -43,9 +43,9 @@ class ContactController extends Controller
   }
 
   // Login画面の表示
-  public function login()
-  {
-    return view('admin');
-  }
+  // public function login()
+  // {
+    // return view('admin');
+  // }
 
 }
