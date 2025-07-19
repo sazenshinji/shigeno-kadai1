@@ -3,14 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Contact;
+use App\Models\Category;
 
 class AuthController extends Controller
 {
 
-  // Login画面の表示
+  // 管理画面の表示
   public function login()
   {
-    return view('admin');
+    // $contacs = Contact::all();
+    $contacs = Contact::with('category')->get();
+    $categories = Category::all();
+
+    return view('admin', compact('contacs','categories'));
   }
 
 }
