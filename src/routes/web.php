@@ -26,3 +26,5 @@ Route::post('/contacts', [ContactController::class, 'store']);
 Route::middleware('auth')->group(function () {
     Route::get('/admin', [AuthController::class, 'login']);
 });
+
+Route::get('/contacts/search', [AuthController::class, 'search']);
