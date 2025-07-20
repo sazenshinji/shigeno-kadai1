@@ -15,6 +15,47 @@
 
     </div>
 
+
+  <form class="search-form" action="/contacts/search" method="get">
+    @csrf
+    <div class="search-form__item">
+
+      <input class="search-form__item-input" type="text" name="name_email" placeholder="名前やメールアドレスを入力してください" value="{{ old('name_email') }}">
+
+
+      <select name="gender_id">
+        <option value="" disabled selected>性別</option>
+        <option value="5">全て</option>
+        <option value="1">男性</option>
+        <option value="2">女性</option>
+        <option value="3">その他</option>
+      </select>
+
+
+      <select  name="category_id">
+        <option value="" disabled selected>お問い合わせの種類</option>
+        @foreach ($categories as $category)
+          <option value="{{ $category['id'] }}">{{ $category['content'] }}</option>
+        @endforeach
+      </select>
+
+     <input class="search-form__item-input" type="text" name="yymmdd" placeholder="年/月/日" value="{{ old('yymmdd') }}">
+
+
+    </div>
+
+    <div class="search-form__button">
+      <button class="search-form__button-submit" type="submit">検索</button>
+    </div>
+
+  </form>
+  <form class="reset-form" action="/contacts/reset" method="get">
+    @csrf
+    <div class="search-reset__button">
+      <button class="search-form__button-reset" type="submit">リセット</button>
+    </div>
+  </form>
+
   <div class="todo-table">
     <table class="todo-table__inner">
       <tr class="todo-table__row">
@@ -34,7 +75,7 @@
             <!-- @method('PATCH') -->
             <!-- @csrf -->
             <td class="confirm-table__text">
-               <p class="update-form__itme-p">{{ $contact['name'] }}</p>
+               <p class="update-form__itme-p">{{ $contact['last_name'] }}</p>
             </td>
             <td class="confirm-table__text">
                <p class="update-form__itme-p">{{ $contact['first_name'] }}</p>
