@@ -6,10 +6,8 @@
 
 @section('content')
 
-  <?php print_r($contact) ?>
-  <?php print_r($category) ?>
+  <!-- <?php print_r($contact) ?> -->
 
-  <!-- <?php print_r($contact['name']) ?> -->      <!-- 名前のみ取得したい場合。 -->
 
     <div class="confirm__content">
       <div class="confirm__heading">
@@ -25,7 +23,7 @@
               <th class="confirm-table__header">お名前</th>
               <td class="confirm-table__text">
                 <!-- <input type="text" name="name" value="サンプルテキスト" /> -->
-                <input type="text" name="name" value="{{ $contact['name'] }}" readonly />
+                <input type="text" name="last_name" value="{{ $contact['last_name'] }}" readonly />
                 <input type="text" name="first_name" value="{{ $contact['first_name'] }}" readonly />
               </td>
             </tr>
@@ -88,7 +86,7 @@
               <th class="confirm-table__header">お問い合わせ内容</th>
               <td class="confirm-table__text">
                 <!-- <input type="text" name="content" value="サンプルテキスト" /> -->
-                <input type="text" name="content" value="{{ $contact['content'] }}" readonly />
+                <input type="text" name="detail" value="{{ $contact['detail'] }}" readonly />
 
               </td>
             </tr>

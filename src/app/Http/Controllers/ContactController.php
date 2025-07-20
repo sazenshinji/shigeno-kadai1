@@ -24,30 +24,27 @@ class ContactController extends Controller
   public function confirm (ContactRequest $request){
   // public function confirm (Request $request){
 
-    $contact = $request->only(['name', 'first_name', 'gender',  'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'category_id', 'content']);
-    // $categories = Category::all();
+    $contact = $request->only(['category_id', 'first_name', 'last_name', 'gender',  'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'detail']);
+
     $category_tb = Category::find($contact['category_id']);
     $category = $category_tb->content;
 
+    session(['input_contact' => $contact]);
+
     // return view('confirm', ['contact' => $contact]);
     return view('confirm', compact('contact','category'));
-
   }
 
   // 確認画面で「送信]ボタンをクリック
    public function store (Request $request){
-    $contact = $request->only(['name', 'first_name', 'gender',  'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'category_id', 'content']);
+    // $contact = $request->only(['name', 'first_name', 'gender',  'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'category_id', 'content']);
 
-    // $contact = $request->only(['name']);
+    $contact = session('input_contact');
+    // dump($contact);
 
-    // Contact::create($contact);
+    Contact::create($contact);
+
     return view('thanks');
   }
-
-  // Login画面の表示
-  // public function login()
-  // {
-    // return view('admin');
-  // }
 
 }

@@ -20,12 +20,12 @@
           <div class="form__group-content">
             <div class="form__input--text">
               <!-- <input type="text" name="name" placeholder="テスト太郎" value="{{ old('name') }}" /> -->
-              <input type="text" name="name" placeholder="例：山田" value="{{ old('name') }}" />
+              <input type="text" name="last_name" placeholder="例：山田" value="{{ old('name') }}" />
               <input type="text" name="first_name" placeholder="例：太郎" value="{{ old('first_name') }}" />
             </div>
             <div class="form__error">
               <!--バリデーション機能を実装したら記述します。-->
-              @error('name')
+              @error('last_name')
               {{ $message }}
               @enderror
               @error('first_name')
@@ -167,11 +167,11 @@
           </div>
           <div class="form__group-content">
             <div class="form__input--textarea">
-              <textarea name="content" placeholder="お問い合わせ内容をご記載ください"></textarea>
+              <textarea name="detail" placeholder="お問い合わせ内容をご記載ください"></textarea>
             </div>
             <div class="form__error">
               <!--バリデーション機能を実装したら記述します。-->
-              @error('content')
+              @error('detail')
               {{ $message }}
               @enderror
             </div>
