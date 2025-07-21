@@ -48,13 +48,17 @@ chmod -R 777 storage
 
 ## 使用技術(実行環境)
 PHP 7.4.9 (cli) (built: Sep  1 2020 02:33:08) ( NTS )
+
 Laravel Framework 8.83.8
+
 mysql  Ver 8.0.26 for Linux on x86_64 (MySQL Community Server - GPL)
+
 nginx version: nginx/1.21.1
 
 
 ## URL
 お問い合わせフォーム：http://localhost/
+
 管理画面：http://localhost/admin
 
 ## ER図
