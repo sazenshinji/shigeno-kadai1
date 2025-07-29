@@ -25,7 +25,7 @@
 
       <select name="gender_id">
         <option value="" disabled selected>性別</option>
-        <option value="5">全て</option>
+        <option value="4">全て</option>
         <option value="1">男性</option>
         <option value="2">女性</option>
         <option value="3">その他</option>
@@ -39,7 +39,7 @@
         @endforeach
       </select>
 
-     <input class="search-form__item-input" type="text" name="yymmdd" placeholder="年/月/日" value="{{ old('yymmdd') }}">
+     <input class="search-form__item-input" type="date" name="date" placeholder="年/月/日" value="{{ old('date') }}">
 
 
     </div>

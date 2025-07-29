@@ -16,13 +16,13 @@ class ContactController extends Controller
   {
     $contacts = Contact::with('category')->get();
     $categories = Category::all();
-    // return view('index');
     return view('index', compact('contacts', 'categories'));
   }
 
   // 入力画面で「確認画面]ボタンをクリック
-  public function confirm (ContactRequest $request){
-  // public function confirm (Request $request){
+  public function confirm(ContactRequest $request)
+  {
+    // public function confirm (Request $request){
 
     $contact = $request->only(['category_id', 'first_name', 'last_name', 'gender',  'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'detail']);
 
@@ -32,11 +32,12 @@ class ContactController extends Controller
     session(['input_contact' => $contact]);
 
     // return view('confirm', ['contact' => $contact]);
-    return view('confirm', compact('contact','category'));
+    return view('confirm', compact('contact', 'category'));
   }
 
   // 確認画面で「送信]ボタンをクリック
-   public function store (Request $request){
+  public function store(Request $request)
+  {
     // $contact = $request->only(['name', 'first_name', 'gender',  'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'category_id', 'content']);
 
     $contact = session('input_contact');
@@ -46,5 +47,4 @@ class ContactController extends Controller
 
     return view('thanks');
   }
-
 }
