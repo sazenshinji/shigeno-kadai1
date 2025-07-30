@@ -29,9 +29,7 @@ class ContactFactory extends Factory
             'last_name' => $this->faker->randomElement($last_names),
             'gender' => $this->faker->numberBetween(1,3),
             'email' => $this->faker->safeEmail,
-            'tel1' => $this->faker->numberBetween(001,999),
-            'tel2' => $this->faker->numberBetween(001,999),
-            'tel3' => $this->faker->numberBetween(001,999),
+            'tel' => $this->faker->numberBetween(1000010001,9999999999),
             'address' => $this->faker->randomElement($addresses),
             'building' => $this->faker->randomElement($buildings),
             'detail' => $this->faker->text(10)

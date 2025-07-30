@@ -14,7 +14,7 @@
     <h2>Confirm</h2>
   </div>
 
-  <form class="form" action="/contacts" method="post">
+  <form class="form" action="/contacts" method="post" novalidate>
     @csrf
     <div class="confirm-table">
       <table class="confirm-table__inner">
@@ -22,9 +22,13 @@
         <tr class="confirm-table__row">
           <th class="confirm-table__header">お名前</th>
           <td class="confirm-table__text">
+
+            <p>{{ $contact['last_name']. ' ' . $contact['first_name']}}</p>
+
             <!-- <input type="text" name="name" value="サンプルテキスト" /> -->
-            <input type="text" name="last_name" value="{{ $contact['last_name'] }}" readonly />
-            <input type="text" name="first_name" value="{{ $contact['first_name'] }}" readonly />
+            <!-- <input type="text" name="last_name" value="{{ $contact['last_name'] }}" readonly /> -->
+            <!-- <input type="text" name="first_name" value="{{ $contact['first_name'] }}" readonly /> -->
+
           </td>
         </tr>
 
@@ -52,9 +56,7 @@
         <tr class="confirm-table__row">
           <th class="confirm-table__header">電話番号</th>
           <td class="confirm-table__text">
-            <input type="tel" name="tel1" value="{{ $contact['tel1'] }}" readonly />
-            <input type="tel" name="tel2" value="{{ $contact['tel2'] }}" readonly />
-            <input type="tel" name="tel3" value="{{ $contact['tel3'] }}" readonly />
+            <input type="tel" name="tel" value="{{ $contact['tel'] }}" readonly />
           </td>
         </tr>
 

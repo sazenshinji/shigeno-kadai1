@@ -22,16 +22,24 @@ class ContactController extends Controller
   // 入力画面で「確認画面]ボタンをクリック
   public function confirm(ContactRequest $request)
   {
-    // public function confirm (Request $request){
+    $contact = ['category_id' => '', 'first_name' => '', 'last_name' => '', 'gender' => '',  'email' => '', 'tel' => '',  'address' => '', 'building' => '', 'detail' => ''];
 
-    $contact = $request->only(['category_id', 'first_name', 'last_name', 'gender',  'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'detail']);
+    $contact_in = $request->only(['category_id', 'first_name', 'last_name', 'gender',  'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'detail']);
+    $contact['category_id'] = $contact_in['category_id'];
+    $contact['first_name'] = $contact_in['first_name'];
+    $contact['last_name'] = $contact_in['last_name'];
+    $contact['gender'] = $contact_in['gender'];
+    $contact['email'] = $contact_in['email'];
+    $contact['tel'] = $contact_in['tel1'] . $contact_in['tel2'] . $contact_in['tel3'];
+    $contact['address'] = $contact_in['address'];
+    $contact['building'] = $contact_in['building'];
+    $contact['detail'] = $contact_in['detail'];
 
     $category_tb = Category::find($contact['category_id']);
     $category = $category_tb->content;
 
     session(['input_contact' => $contact]);
 
-    // return view('confirm', ['contact' => $contact]);
     return view('confirm', compact('contact', 'category'));
   }
 
@@ -41,7 +49,6 @@ class ContactController extends Controller
     // $contact = $request->only(['name', 'first_name', 'gender',  'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'category_id', 'content']);
 
     $contact = session('input_contact');
-    // dump($contact);
 
     Contact::create($contact);
 
