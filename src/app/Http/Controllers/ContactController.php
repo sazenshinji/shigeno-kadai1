@@ -14,9 +14,10 @@ class ContactController extends Controller
   // 入力画面の表示
   public function index()
   {
-    $contacts = Contact::with('category')->get();
+    // $contacts = Contact::with('category')->get();
+    $contact = ['category_id' => '', 'first_name' => '', 'last_name' => '', 'gender' => '1',  'email' => '', 'tel1' => '', 'tel2' => '', 'tel3' => '',  'address' => '', 'building' => '', 'detail' => ''];
     $categories = Category::all();
-    return view('index', compact('contacts', 'categories'));
+    return view('index', compact('contact', 'categories'));
   }
 
   // 入力画面で「確認画面]ボタンをクリック
@@ -38,6 +39,7 @@ class ContactController extends Controller
     $category_tb = Category::find($contact['category_id']);
     $category = $category_tb->content;
 
+    session(['input-org_contact' => $contact_in]);
     session(['input_contact' => $contact]);
 
     return view('confirm', compact('contact', 'category'));
@@ -46,12 +48,17 @@ class ContactController extends Controller
   // 確認画面で「送信]ボタンをクリック
   public function store(Request $request)
   {
-    // $contact = $request->only(['name', 'first_name', 'gender',  'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'category_id', 'content']);
-
     $contact = session('input_contact');
 
     Contact::create($contact);
 
     return view('thanks');
+  }
+  // 確認画面で「修正]ボタンをクリック
+  public function modifies()
+  {
+    $contact = session('input-org_contact');
+    $categories = Category::all();
+    return view('index', compact('contact', 'categories'));
   }
 }

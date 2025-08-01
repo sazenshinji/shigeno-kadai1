@@ -23,11 +23,7 @@
           <th class="confirm-table__header">お名前</th>
           <td class="confirm-table__text">
 
-            <p>{{ $contact['last_name']. ' ' . $contact['first_name']}}</p>
-
-            <!-- <input type="text" name="name" value="サンプルテキスト" /> -->
-            <!-- <input type="text" name="last_name" value="{{ $contact['last_name'] }}" readonly /> -->
-            <!-- <input type="text" name="first_name" value="{{ $contact['first_name'] }}" readonly /> -->
+            <p>{{ $contact['last_name']. '　' . $contact['first_name']}}</p>
 
           </td>
         </tr>
@@ -94,9 +90,23 @@
         </tr>
       </table>
     </div>
+
     <div class="form__button">
       <button class="form__button-submit" type="submit">送信</button>
     </div>
   </form>
+
+
+  <form class="form" action="/modifies" method="get" novalidate>
+    @csrf
+    <div class="modifies-form__button">
+      <button class="modifies-form__button-submit" type="submit">修正</button>
+    </div>
+  </form>
+
+
+  <!-- <div class="modifies__link"> -->
+  <!-- <a class="modifies__button-submit" href="/">修正</a> -->
+  <!-- </div> -->
 </div>
 @endsection

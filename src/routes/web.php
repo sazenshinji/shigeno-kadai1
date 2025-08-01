@@ -23,6 +23,7 @@ use App\Http\Controllers\Auth\LoginController;
 Route::get('/', [ContactController::class, 'index']);
 Route::post('/contacts/confirm', [ContactController::class, 'confirm']);
 Route::post('/contacts', [ContactController::class, 'store']);
+Route::get('/modifies', [ContactController::class, 'modifies']);
 Route::get('/contacts/thanks', [ContactController::class, 'index']);
 
 
