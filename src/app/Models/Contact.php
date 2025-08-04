@@ -21,37 +21,57 @@ class Contact extends Model
         'detail'
     ];
 
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
-    public function scopeCategorySearch($query, $category_id){
+
+    // カテゴリーIDで検索
+    public function scopeCategorySearch($query, $category_id)
+    {
         if (!empty($category_id)) {
             $query->where('category_id', $category_id);
         }
     }
 
-    public function scopeLastnameSearch($query, $name){
+    // Lastname(姓)で検索
+    public function scopeLastnameSearch($query, $name)
+    {
         if (!empty($name)) {
             $query->where('last_name', 'like', '%' . $name . '%');
         }
     }
 
-    public function scopeFirstnameSearch($query, $name){
+    // Firstname(名)で検索
+    public function scopeFirstnameSearch($query, $name)
+    {
         if (!empty($name)) {
             $query->where('first_name', 'like', '%' . $name . '%');
         }
     }
 
-    public function scopeEmailSearch($query, $email){
+    // メールアドレスで検索
+    public function scopeEmailSearch($query, $email)
+    {
         if (!empty($email)) {
-            $query->where('first_name', 'like', '%' . $email . '%');
+            $query->where('email', 'like', '%' . $email . '%');
         }
     }
 
-    public function scopeGenderSearch($query, $gender_id){
+    // 性別で検索
+    public function scopeGenderSearch($query, $gender_id)
+    {
         if (!empty($gender_id)) {
             $query->where('gender', $gender_id);
+        }
+    }
+
+    // 年月日で検索
+    public function scopeDateSearch($query, $date)
+    {
+        if (!empty($date)) {
+            $query->where('updated_at', 'like', '%' . $date . '%');
         }
     }
 }

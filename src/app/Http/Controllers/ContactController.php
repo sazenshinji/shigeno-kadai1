@@ -14,7 +14,6 @@ class ContactController extends Controller
   // 入力画面の表示
   public function index()
   {
-    // $contacts = Contact::with('category')->get();
     $contact = ['category_id' => '', 'first_name' => '', 'last_name' => '', 'gender' => '1',  'email' => '', 'tel1' => '', 'tel2' => '', 'tel3' => '',  'address' => '', 'building' => '', 'detail' => ''];
     $categories = Category::all();
     return view('index', compact('contact', 'categories'));

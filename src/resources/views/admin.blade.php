@@ -20,7 +20,6 @@
 
     <input class="search-form__item-input" type="text" name="keyword" placeholder="名前やメールアドレスを入力してください" value="{{ old('keyword') }}">
 
-
     <select name="gender_id">
       <option value="" disabled selected>性別</option>
       <option value="4">全て</option>
@@ -28,7 +27,6 @@
       <option value="2">女性</option>
       <option value="3">その他</option>
     </select>
-
 
     <select name="category_id">
       <option value="" disabled selected>お問い合わせの種類</option>
@@ -39,13 +37,13 @@
 
     <input class="search-form__item-input" type="date" name="date" placeholder="年/月/日" value="{{ old('date') }}">
 
-
   </div>
 
   <div class="search-form__button">
     <button class="search-form__button-submit" type="submit">検索</button>
   </div>
 
+  
 </form>
 <form class="reset-form" action="/contacts/reset" method="get" novalidate>
   @csrf

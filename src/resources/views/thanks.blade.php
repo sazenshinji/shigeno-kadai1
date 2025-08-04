@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<form class="form" action="/contacts/thanks" method="get" >
+<form class="form" action="/contacts/thanks" method="get">
   @csrf
   <div class="thanks__group">
     <div class="thanks__content">

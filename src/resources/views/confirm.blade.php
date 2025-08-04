@@ -6,8 +6,6 @@
 
 @section('content')
 
-<!-- <?php print_r($contact) ?> -->
-
 
 <div class="confirm__content">
   <div class="confirm__heading">
@@ -44,7 +42,6 @@
         <tr class="confirm-table__row">
           <th class="confirm-table__header">メールアドレス</th>
           <td class="confirm-table__text">
-            <!-- <input type="email" name="email" value="サンプルテキスト" /> -->
             <input type="email" name="email" value="{{ $contact['email'] }}" readonly />
           </td>
         </tr>
@@ -73,7 +70,6 @@
         <tr class="confirm-table__row">
           <th class="confirm-table__header">お問い合わせの種類</th>
           <td class="confirm-table__text">
-            <!-- <p >※値の取得方法が分からない※</p> -->
 
             <p>{{ $category }}</p>
 
@@ -83,7 +79,6 @@
         <tr class="confirm-table__row">
           <th class="confirm-table__header">お問い合わせ内容</th>
           <td class="confirm-table__text">
-            <!-- <input type="text" name="content" value="サンプルテキスト" /> -->
             <input type="text" name="detail" value="{{ $contact['detail'] }}" readonly />
 
           </td>
@@ -104,9 +99,5 @@
     </div>
   </form>
 
-
-  <!-- <div class="modifies__link"> -->
-  <!-- <a class="modifies__button-submit" href="/">修正</a> -->
-  <!-- </div> -->
 </div>
 @endsection
