@@ -12,7 +12,7 @@ class AuthController extends Controller
   // 管理画面(Admin)の表示
   public function login()
   {
-    $contacts = Contact::with('category')->get();
+    $contacts = Contact::with('category') ->paginate(7);
     $categories = Category::all();
 
     return view('admin', compact('contacts', 'categories'));
@@ -49,7 +49,7 @@ class AuthController extends Controller
       $query->whereDate('created_at', '=', $request->date);
     }
 
-    $contacts = $query->get();
+    $contacts = $query->paginate(7);
     $categories = Category::all();
 
     return view('admin', compact('contacts', 'categories'));

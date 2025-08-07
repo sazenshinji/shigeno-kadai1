@@ -1,5 +1,13 @@
 @extends('layouts.app_login')
 
+<style>
+  svg.w-5.h-5 {
+    /*paginateメソッドの矢印の大きさ調整のために追加*/
+    width: 30px;
+    height: 30px;
+  }
+</style>
+
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/index.css') }}" />
 @endsection
@@ -42,6 +50,7 @@
   <div class="search-form__button">
     <button class="search-form__button-submit" type="submit">検索</button>
     <button class="search-form__button-submit" type="submit" name="reset">リセット</button>
+    {{ $contacts->appends(request()->query())->links() }}
   </div>
 </form>
 
