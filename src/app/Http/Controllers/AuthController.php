@@ -54,4 +54,12 @@ class AuthController extends Controller
 
     return view('admin', compact('contacts', 'categories'));
   }
+
+  // 管理画面(Admin)のモーダルウィンドウで[削除]が押された時の処理
+  public function destroy(Request $request)
+  {
+    Contact::find($request->id)->delete();
+    return redirect('/admin');
+  }
+
 }

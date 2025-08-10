@@ -94,104 +94,133 @@
 </form>
 
 <div class="todo-table">
-  <table class="todo-table__inner">
-    <tr class="todo-table__row">
-      <th class="todo-table__header">
-        <span class="todo-table__header-span">お名前　</span>
-        <span class="todo-table__header-span">性別　</span>
-        <span class="todo-table__header-span">メールアドレス　</span>
-        <span class="todo-table__header-span">お問い合わせの種類</span>
-      </th>
-    </tr>
+  <!-- <table class="todo-table__inner"> -->
+  <!-- <tr class="todo-table__row"> -->
+  <!-- <th class="todo-table__header"> -->
+  <span class="todo-table__header-span">お名前　　　</span>
+  <span class="todo-table__header-span">性別　　</span>
+  <span class="todo-table__header-span">メールアドレス　　　　　　</span>
+  <span class="todo-table__header-span">お問い合わせの種類</span>
+  <!-- </th> -->
+  <!-- </tr>endphp -->
 
 
-    @foreach ($contacts as $contact)
-    <tr class="confirm-table__row">
-      <!-- <td class="todo-table__item"> -->
-      <!-- <form class="update-form" action="/admin/update" method="post"> -->
-      <!-- @method('PATCH') -->
-      <!-- @csrf -->
-      <td class="confirm-table__text">
-        <p class="update-form__itme-p">{{ $contact['last_name'] }}</p>
-      </td>
-      <td class="confirm-table__text">
-        <p class="update-form__itme-p">{{ $contact['first_name'] }}</p>
-      </td>
 
-      <td class="confirm-table__text">
-        @if ($contact['gender'] === 1)
-        <p>男性</p>
-        @elseif ($contact['gender'] === 2)
-        <p>女性</p>
-        @else
-        <p>その他</p>
-        @endif
-      </td>
-      <td class="confirm-table__text">
-        <p class="update-form__itme-p">{{ $contact['email'] }}</p>
-      </td>
+  @foreach ($contacts as $contact)
+  <div style="margin-bottom: 20px;">
+    <span class="update-form__itme-p">{{ $contact['last_name'] }}</span>
+    <span class="update-form__itme-p">{{ $contact['first_name']}}</span>
+    <span class="todo-table__header-span">　　</span>
 
-      <td class="confirm-table__text">
-        <!-- <p class="update-form__item-p">Category 1</p> -->
-        <p class="update-form__itme-p">{{ $contact['category']['content'] }}</p>
-      </td>
+    @if ($contact['gender'] === 1)
+    <span>男性</span>
+    <span class="todo-table__header-span">　　</span>
+    @elseif ($contact['gender'] === 2)
+    <span>女性</span>
+    <span class="todo-table__header-span">　　</span>
+    @else
+    <span>その他</span>
+    <span class="todo-table__header-span">　　</span>
+    @endif
 
-
-      <td class="confirm-table__text">
-        <!-- <form class="delete-form" action="/todos/delete" method="post" novalidate> -->
-        <!-- @method('DELETE') -->
-        <!-- @csrf -->
-        <!-- <div class="delete-form__button"> -->
-        <!-- <input type="hidden" name="id" value="{{ $contact['id'] }}"> -->
-        <!-- <button class="delete-form__button-submit" type="submit">詳細</button> -->
-        <button id="openModalBtn">詳細</button>
-        <!-- </div> -->
-        <!-- </form> -->
-      </td>
-
-      <!-- AI：Laravel 8 + JavaScript を使って「HTML上の複数のボタンで、それぞれ違うモーダルウィンドウを表示する」基本的な例 -->
-      <!-- AI：Laravel 8 + JavaScript で、HTML上に @foreach で複数ボタンを表示し、それぞれのボタンを押したときに 異なるモーダルウィンドウ を表示する例 -->
-
-
-    </tr>
-    @endforeach
-
-
-  </table>
-</div>
-
-
-<!-- モーダル本体 -->
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <span class="close" id="closeModalBtn">&times;</span>
-    <p>これはモーダルの内容です。</p>
+    <span class="update-form__itme-p">{{ $contact['email'] }}</span>
+    <span class="todo-table__header-span">　　</span>
+    <span class="update-form__itme-p">{{ $contact['category']['content'] }}</span>
+    <span class="todo-table__header-span">　　</span>
+    <button class="btn" data-modal="modal-{{ $contact['id'] }}">詳細</button>
+    <span class="todo-table__header-span">　　</span>
   </div>
-</div>
 
-<script>
-  // JavaScriptでモーダル制御
-  const modal = document.getElementById("myModal");
-  const openBtn = document.getElementById("openModalBtn");
-  const closeBtn = document.getElementById("closeModalBtn");
+  <!-- モーダル -->
+  <div id="modal-{{ $contact['id'] }}" class="modal">
+    <div class="modal-content">
+      <span class="close" data-close="modal-{{ $contact['id'] }}">&times;</span>
 
-  // モーダルを表示
-  openBtn.onclick = () => {
-    modal.style.display = "block";
-  };
+      <form class="modal__detail-form" action="/delete" method="post">
+        @csrf
 
-  // モーダルを閉じる
-  closeBtn.onclick = () => {
-    modal.style.display = "none";
-  };
+        <div class="modal-content-neme">
+          <span>お名前</span>
+          <span>　　</span>
+          <span>{{ $contact['last_name'] }}</span>
+          <span>{{ $contact['first_name']}}</span>
+        </div>
+        <div class="modal-content-gender">
+          <span>性別</span>
+          <span>　　</span>
+          @if ($contact['gender'] === 1)
+          <span>男性</span>
+          @elseif ($contact['gender'] === 2)
+          <span>女性</span>
+          @else
+          <span>その他</span>
+          @endif
+        </div>
+        <div class="modal-content-email">
+          <span>メールアドレス</span>
+          <span>　　</span>
+          <span class="update-form__itme-p">{{ $contact['email'] }}</span>
+        </div>
+        <div class="modal-content-tel">
+          <span>電話番号</span>
+          <span>　　</span>
+          <span class="update-form__itme-p">{{ $contact['tel'] }}</span>
+        </div>
+        <div class="modal-content-address">
+          <span>住所</span>
+          <span>　　</span>
+          <span class="update-form__itme-p">{{ $contact['address'] }}</span>
+        </div>
+        <div class="modal-content-building">
+          <span>建物名</span>
+          <span>　　</span>
+          <span class="update-form__itme-p">{{ $contact['building'] }}</span>
+        </div>
+        <div class="modal-content-category_id">
+          <span>お問い合わせの種類</span>
+          <span>　　</span>
+          <span class="update-form__itme-p">{{ $contact['category']['content'] }}</span>
+        </div>
+        <div class="modal-content-detail">
+          <span>お問い合わせ内容</span>
+          <span>　　</span>
+          <span class="update-form__itme-p">{{ $contact['detail'] }}</span>
+        </div>
 
-  // 背景クリックで閉じる
-  window.onclick = (event) => {
-    if (event.target === modal) {
-      modal.style.display = "none";
-    }
-  };
-</script>
+        <input type="hidden" name="id" value="{{ $contact->id }}">
+        <input class="modal-form__delete-btn btn" type="submit" value="削除">
+
+      </form>
+
+    </div>
+  </div>
+  @endforeach
+
+  <script>
+    // ボタンをクリックしてモーダルを開く
+    document.querySelectorAll("[data-modal]").forEach(button => {
+      button.addEventListener("click", () => {
+        const modalId = button.getAttribute("data-modal");
+        document.getElementById(modalId).style.display = "block";
+      });
+    });
+
+    // 閉じるボタン
+    document.querySelectorAll("[data-close]").forEach(closeBtn => {
+      closeBtn.addEventListener("click", () => {
+        const modalId = closeBtn.getAttribute("data-close");
+        document.getElementById(modalId).style.display = "none";
+      });
+    });
+
+    // モーダル背景クリックで閉じる
+    window.addEventListener("click", (event) => {
+      if (event.target.classList.contains("modal")) {
+        event.target.style.display = "none";
+      }
+    });
+  </script>
 
 
-@endsection
+
+  @endsection
