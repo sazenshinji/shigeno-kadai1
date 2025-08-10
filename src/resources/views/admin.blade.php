@@ -8,6 +8,45 @@
   }
 </style>
 
+<style>
+  /* モーダルのスタイル */
+  .modal {
+    display: none;
+    /* 初期は非表示 */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* 半透明背景 */
+  }
+
+  .modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    border-radius: 8px;
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .close:hover {
+    color: black;
+  }
+</style>
+
+
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/index.css') }}" />
 @endsection
@@ -99,16 +138,19 @@
 
 
       <td class="confirm-table__text">
-        <form class="delete-form" action="/todos/delete" method="post" novalidate>
-          @method('DELETE')
-          @csrf
-          <div class="delete-form__button">
-            <input type="hidden" name="id" value="{{ $contact['id'] }}">
-            <button class="delete-form__button-submit" type="submit">詳細</button>
-          </div>
-        </form>
+        <!-- <form class="delete-form" action="/todos/delete" method="post" novalidate> -->
+        <!-- @method('DELETE') -->
+        <!-- @csrf -->
+        <!-- <div class="delete-form__button"> -->
+        <!-- <input type="hidden" name="id" value="{{ $contact['id'] }}"> -->
+        <!-- <button class="delete-form__button-submit" type="submit">詳細</button> -->
+        <button id="openModalBtn">詳細</button>
+        <!-- </div> -->
+        <!-- </form> -->
       </td>
 
+      <!-- AI：Laravel 8 + JavaScript を使って「HTML上の複数のボタンで、それぞれ違うモーダルウィンドウを表示する」基本的な例 -->
+      <!-- AI：Laravel 8 + JavaScript で、HTML上に @foreach で複数ボタンを表示し、それぞれのボタンを押したときに 異なるモーダルウィンドウ を表示する例 -->
 
 
     </tr>
@@ -117,5 +159,39 @@
 
   </table>
 </div>
+
+
+<!-- モーダル本体 -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeModalBtn">&times;</span>
+    <p>これはモーダルの内容です。</p>
+  </div>
+</div>
+
+<script>
+  // JavaScriptでモーダル制御
+  const modal = document.getElementById("myModal");
+  const openBtn = document.getElementById("openModalBtn");
+  const closeBtn = document.getElementById("closeModalBtn");
+
+  // モーダルを表示
+  openBtn.onclick = () => {
+    modal.style.display = "block";
+  };
+
+  // モーダルを閉じる
+  closeBtn.onclick = () => {
+    modal.style.display = "none";
+  };
+
+  // 背景クリックで閉じる
+  window.onclick = (event) => {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  };
+</script>
+
 
 @endsection
