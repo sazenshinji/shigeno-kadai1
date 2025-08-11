@@ -22,6 +22,15 @@
           <input type="text" name="first_name" placeholder="例：太郎" value="{{ old('first_name') ?? $contact['first_name'] }}" />
         </div>
         <div class="form__error">
+          <!--バリデーション機能を実装したら記述します。-->
+          @error('last_name')
+          {{ $message }}
+          @enderror
+        </div>
+        <div class="form__error">
+          @error('first_name')
+          {{ $message }}
+          @enderror
         </div>
 
       </div>
@@ -39,6 +48,11 @@
           <input type="radio" name="gender" value="3" {{ old('gender' , $contact['gender'] ?? '') === '3' ? 'checked' : '' }}> その他
         </div>
         <div class="form__error">
+          <!--バリデーション機能を実装したら記述します。-->
+          @error('gender')
+          {{ $message }}
+          @enderror
+
         </div>
       </div>
     </div>
@@ -53,7 +67,10 @@
           <input type="email" name="email" placeholder="例：test@example.com" value="{{ old('email') ?? $contact['email'] }}" />
         </div>
         <div class="form__error">
-
+          <!--バリデーション機能を実装したら記述します。-->
+          @error('email')
+          {{ $message }}
+          @enderror
         </div>
       </div>
     </div>
@@ -72,7 +89,16 @@
           <input type="tel" name="tel3" placeholder="5678" value="{{ old('tel3') ?? $contact['tel3'] }}" />
         </div>
         <div class="form__error">
-
+          <!--バリデーション機能を実装したら記述します。-->
+          @error('tel1')
+          {{ $message }}
+          @enderror
+          @error('tel2')
+          {{ $message }}
+          @enderror
+          @error('tel3')
+          {{ $message }}
+          @enderror
         </div>
       </div>
     </div>
@@ -87,7 +113,10 @@
           <input type="text" name="address" placeholder="例：東京都渋谷区千駄ヶ谷1-2-3" value="{{ old('address') ?? $contact['address'] }}" />
         </div>
         <div class="form__error">
-
+          <!--バリデーション機能を実装したら記述します。-->
+          @error('address')
+          {{ $message }}
+          @enderror
         </div>
       </div>
     </div>
@@ -120,6 +149,10 @@
 
         </div>
         <div class="form__error">
+          <!--バリデーション機能を実装したら記述します。-->
+          @error('category_id')
+          {{ $message }}
+          @enderror
 
         </div>
       </div>
@@ -135,7 +168,10 @@
           <textarea name="detail" placeholder="お問い合わせ内容をご記載ください">{{ old('detail') ?? $contact['detail']  }}</textarea>
         </div>
         <div class="form__error">
-
+          <!--バリデーション機能を実装したら記述します。-->
+          @error('detail')
+          {{ $message }}
+          @enderror
         </div>
       </div>
     </div>

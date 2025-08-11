@@ -65,7 +65,7 @@
   @csrf
   <div class="search-form__item">
 
-    <input class="search-form__item-input" type="text" name="keyword" placeholder="名前やメールアドレスを入力してください" value="{{ old('keyword') }}">
+    <input class="search-form__item-input" type="text" name="keyword" placeholder="名前やメールアドレスを入力してください" value="{{ request('keyword') }}">
 
     <select name="gender_id">
       <option value="" disabled selected>性別</option>
