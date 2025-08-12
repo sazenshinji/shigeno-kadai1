@@ -22,14 +22,21 @@ class AuthController extends Controller
   public function search(Request $request)
   {
 
+    //「reset」が押された時は、「/admin」へ リダイレクトする。
     if ($request->has('reset')) {
       return redirect('/admin');
     }
 
+    //gender_id = 4:はその他なので、性別での検索はしない。
     if ($request->gender_id === '4') {
       $request["gender_id"] = null;
     }
 
+    //フルネーム検索のため、入力 keywordの半角スペースと全角スペースを除去する。
+    $cleaned = preg_replace('/[ 　]+/u', '', $request->keyword);
+    // dd($cleaned);
+
+    //クエリビルダーのインスタンスを作成
     $query = Contact::query();
 
     if (!empty($request->keyword)) {
@@ -39,6 +46,7 @@ class AuthController extends Controller
           ->orWhere('email', 'like', '%' . $request->keyword . '%');
       });
     }
+
     if (!empty($request->gender_id)) {
       $query->where('gender', '=', $request->gender_id);
     }
