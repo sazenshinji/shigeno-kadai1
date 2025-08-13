@@ -12,7 +12,7 @@ class AuthController extends Controller
   // 管理画面(Admin)の表示
   public function login()
   {
-    $contacts = Contact::with('category') ->paginate(7);
+    $contacts = Contact::with('category')->paginate(7);
     $categories = Category::all();
 
     return view('admin', compact('contacts', 'categories'));
@@ -39,20 +39,20 @@ class AuthController extends Controller
     //クエリビルダーのインスタンスを作成
     $query = Contact::query();
 
-    if (!empty($request->keyword)) {
-      $query->where(function ($query_kw) use ($request) {
-        $query_kw->where('first_name', 'like', '%' . $request->keyword . '%')
-          ->orWhere('last_name', 'like', '%' . $request->keyword . '%')
-          ->orWhere('email', 'like', '%' . $request->keyword . '%');
-      });
-    }
-
+    // 姓、名、フルネーム、email で検索
+    $query->where(function ($query_kw) use ($cleaned) {
+      $query_kw->whereRaw("REPLACE(CONCAT(last_name, first_name), ' ', '') LIKE ?", ["%{$cleaned}%"])
+        ->orWhere('email', 'LIKE', "%{$cleaned}%");
+    });
+    // 性別 で検索
     if (!empty($request->gender_id)) {
       $query->where('gender', '=', $request->gender_id);
     }
+    // お問い合わせの種類 で検索
     if (!empty($request->category_id)) {
       $query->where('category_id', '=', $request->category_id);
     }
+    // 年月日 で検索
     if (!empty($request->date)) {
       $query->whereDate('created_at', '=', $request->date);
     }
@@ -69,5 +69,4 @@ class AuthController extends Controller
     Contact::find($request->id)->delete();
     return redirect('/admin');
   }
-
 }

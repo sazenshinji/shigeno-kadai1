@@ -1,54 +1,7 @@
 @extends('layouts.app_login')
 
-<style>
-  svg.w-5.h-5 {
-    /*paginateメソッドの矢印の大きさ調整のために追加*/
-    width: 30px;
-    height: 30px;
-  }
-</style>
-
-<style>
-  /* モーダルのスタイル */
-  .modal {
-    display: none;
-    /* 初期は非表示 */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
-    /* 半透明背景 */
-  }
-
-  .modal-content {
-    background-color: #fff;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 30%;
-    border-radius: 8px;
-  }
-
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-
-  .close:hover {
-    color: black;
-  }
-</style>
-
-
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/index.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
 @endsection
 
 @section('content')
@@ -194,33 +147,10 @@
 
     </div>
   </div>
+
+  <!-- モーダル用scriptの読み込み -->
+  <script src="{{ asset('js/modalscript.js') }}"></script>
+
   @endforeach
-
-  <script>
-    // ボタンをクリックしてモーダルを開く
-    document.querySelectorAll("[data-modal]").forEach(button => {
-      button.addEventListener("click", () => {
-        const modalId = button.getAttribute("data-modal");
-        document.getElementById(modalId).style.display = "block";
-      });
-    });
-
-    // 閉じるボタン
-    document.querySelectorAll("[data-close]").forEach(closeBtn => {
-      closeBtn.addEventListener("click", () => {
-        const modalId = closeBtn.getAttribute("data-close");
-        document.getElementById(modalId).style.display = "none";
-      });
-    });
-
-    // モーダル背景クリックで閉じる
-    window.addEventListener("click", (event) => {
-      if (event.target.classList.contains("modal")) {
-        event.target.style.display = "none";
-      }
-    });
-  </script>
-
-
 
   @endsection
