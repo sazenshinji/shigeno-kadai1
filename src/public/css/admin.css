@@ -19,29 +19,73 @@
 
 
 .search-form__item {
+    height: 40px;
     display: flex;
-    justify-content: center;
-    /* 横方向の中央揃え */
+    justify-content: center;    /* 横方向の中央揃え */
     /* margin-bottom: 150px; */
 }
 
+.search-form-kw__item-input {
+    width: 280px;
+    text-align: center;
+    margin-right: 20px;
+    background-color: #fcfcfc;
+}
+.search-form-gd__item-input {
+    width: 60px;
+    text-align: center;
+    margin-right: 20px;
+    background-color: #f5f5f5;
+}
+.search-form-ca__item-input {
+    width: 160px;
+    text-align: center;
+    margin-right: 20px;
+    background-color: #f5f5f5;
+}
+.search-form-dt__item-input {
+    width: 120px;
+    text-align: center;
+    margin-right: 20px;
+    background-color: #f5f5f5;
+}
+.search-form-srh__button-submit {
+    width: 80px;
+    text-align: center;
+    margin-right: 20px;
+    background-color: #80776a;
+    color: #ffffff;
+}
+.search-form-rst__button-submit {
+    width: 80px;
+    text-align: center;
+    background-color: #d9c5b5;
+    color: #ffffff;
+}
+
+
 .search-form__pagenation {
     position: absolute;    /* 位置指定のため必須 */
-    left: 70%;    /* 中央を画面の60%に置く基準位置 */
+    left: 75%;    /* 中央を画面の60%に置く基準位置 */
     transform: translateX(-50%);    /* 自分の幅の半分だけ左に戻す */
 }
 
 .contact-table {
-    margin-top: 150px;
+    margin-top: 120px;
 }
 
 .contact-table__header {
-    width: 50%;
+    width: 60%;
+    height: 40px;
     margin: 0 auto;
-    /* justify-content: center; */
+
+    display: flex;                  /* Flexbox 有効化 */
+    justify-content: center;        /* 横方向中央 */
+    align-items: center;            /* 縦方向中央 */
+
     background-color: #8b7968;
     /* 横方向の中央揃え */
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
 }
 .contact-table__header-span {
     color: #ffffff;

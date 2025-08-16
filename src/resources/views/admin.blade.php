@@ -6,21 +6,21 @@
 
 @section('content')
 
-
+<!-- Page Heading【Admin】 -->
 <div class="contact-form__content">
   <div class="contact-form__heading">
     <h2>Admin</h2>
   </div>
 </div>
 
-
+<!-- Search items and buttons -->
 <form class="search-form" action="/contacts/search" method="get" novalidate>
   @csrf
   <div class="search-form__item">
 
-    <input class="search-form__item-input" type="text" name="keyword" placeholder="名前やメールアドレスを入力してください" value="{{ request('keyword') }}">
+    <input class="search-form-kw__item-input" type="text" name="keyword" placeholder="名前やメールアドレスを入力してください" value="{{ request('keyword') }}">
 
-    <select name="gender_id"> value="{{request('gender_id')}}"
+    <select class="search-form-gd__item-input" name="gender_id"> value="{{request('gender_id')}}"
       <option value="" disabled selected>性別</option>
       <option value="4" @if( request('gender_id')==4 ) selected @endif>全て</option>
       <option value="1" @if( request('gender_id')==1 ) selected @endif>男性</option>
@@ -28,26 +28,25 @@
       <option value="3" @if( request('gender_id')==3 ) selected @endif>その他</option>
     </select>
 
-    <select name="category_id">
+    <select class="search-form-ca__item-input" name="category_id">
       <option value="" disabled selected>お問い合わせの種類</option>
       @foreach ($categories as $category)
       <option value="{{ $category['id'] }}" @if( request('category_id')==$category->id ) selected @endif>{{ $category['content'] }}</option>
       @endforeach
     </select>
 
-    <input class="search-form__item-input" type="date" name="date" placeholder="年/月/日" value="{{request('date')}}">
+    <input class="search-form-dt__item-input" type="date" name="date" placeholder="年/月/日" value="{{request('date')}}">
 
-    <button class="search-form__button-submit" type="submit">検索</button>
-    <button class="search-form__button-submit" type="submit" name="reset">リセット</button>
-
-    <!-- {{ $contacts->appends(request()->query())->links() }} -->
-
+    <button class="search-form-srh__button-submit" type="submit">検索</button>
+    <button class="search-form-rst__button-submit" type="submit" name="reset">リセット</button>
   </div>
 
+  <!-- Pagination buttons -->
   <div class="search-form__pagenation">
     {{ $contacts->appends(request()->query())->links() }}
   </div>
 
+  <!-- Inquiry list header -->
 </form>
 <div class="contact-table">
   <div class="contact-table__header">
@@ -57,7 +56,7 @@
     <span class="contact-table__header-span">お問い合わせの種類</span>
   </div>
 
-
+  <!-- Inquiry list -->
   @foreach ($contacts as $contact)
   <div class="contact-table__inner">
 
@@ -87,7 +86,7 @@
   </div>
 </div>
 
-<!-- モーダル -->
+<!-- Modal Window -->
 <div id="modal-{{ $contact['id'] }}" class="modal">
   <div class="modal-content">
     <span class="close" data-close="modal-{{ $contact['id'] }}">&times;</span>
@@ -151,7 +150,7 @@
   </div>
 </div>
 
-<!-- モーダル用scriptの読み込み -->
+<!-- Loading script for modal -->
 <script src="{{ asset('js/modalscript.js') }}"></script>
 
 @endforeach
