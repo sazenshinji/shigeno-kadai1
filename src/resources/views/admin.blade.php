@@ -46,44 +46,53 @@
     {{ $contacts->appends(request()->query())->links() }}
   </div>
 
-  <!-- Inquiry list header -->
 </form>
+
+
+<!-- Contact table -->
+
+<!-- Contact table Header -->
 <div class="contact-table">
-  <div class="contact-table__header">
-    <span class="contact-table__header-span">お名前</span>
-    <span class="contact-table__header-span">性別</span>
-    <span class="contact-table__header-span">メールアドレス</span>
-    <span class="contact-table__header-span">お問い合わせの種類</span>
-  </div>
+  <table class="contact-table__inner">
+    <tr>
+      <th class="contact-table__header">
 
-  <!-- Inquiry list -->
-  @foreach ($contacts as $contact)
-  <div class="contact-table__inner">
+        <span class="contact-table__header-span">お名前</span>
+        <span class="contact-table__header-span">性別</span>
+        <span class="contact-table__header-span">メールアドレス</span>
+        <span class="contact-table__header-span">お問い合わせの種類</span>
 
-    <div style="margin-bottom: 20px;">
-      <span class="update-form__itme-p">{{ $contact['last_name'] }}</span>
-      <span class="update-form__itme-p">{{ $contact['first_name']}}</span>
-      <span class="todo-table__header-span">　　</span>
+      </th>
+    </tr>
 
-      @if ($contact['gender'] === 1)
-      <span>男性</span>
-      <span class="todo-table__header-span">　　</span>
-      @elseif ($contact['gender'] === 2)
-      <span>女性</span>
-      <span class="todo-table__header-span">　　</span>
-      @else
-      <span>その他</span>
-      <span class="todo-table__header-span">　　</span>
-      @endif
+    <!-- Contact table Item -->
 
-      <span class="update-form__itme-p">{{ $contact['email'] }}</span>
-      <span class="todo-table__header-span">　　</span>
-      <span class="update-form__itme-p">{{ $contact['category']['content'] }}</span>
-      <span class="todo-table__header-span">　　</span>
-      <button class="btn" data-modal="modal-{{ $contact['id'] }}">詳細</button>
-      <span class="todo-table__header-span">　　</span>
-    </div>
-  </div>
+    @foreach ($contacts as $contact)
+    <tr>
+      <td class="contact-table__item">
+
+        <span class="update-form__itme-p">{{ $contact['last_name'] }}</span>
+        <span class="update-form__itme-p">{{ $contact['first_name']}}</span>
+
+        @if ($contact['gender'] === 1)
+        <span>男性</span>
+        @elseif ($contact['gender'] === 2)
+        <span>女性</span>
+        @else
+        <span>その他</span>
+        @endif
+
+        <span class="update-form__itme-p">{{ $contact['email'] }}</span>
+
+        <span class="update-form__itme-p">{{ $contact['category']['content'] }}</span>
+
+        <button class="btn" data-modal="modal-{{ $contact['id'] }}">詳細</button>
+
+      </td>
+
+    </tr>
+  </table>
+
 </div>
 
 <!-- Modal Window -->
@@ -154,5 +163,6 @@
 <script src="{{ asset('js/modalscript.js') }}"></script>
 
 @endforeach
+
 
 @endsection
