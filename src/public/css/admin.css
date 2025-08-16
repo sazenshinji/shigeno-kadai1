@@ -17,6 +17,42 @@
 }
 */
 
+
+.search-form__item {
+    display: flex;
+    justify-content: center;
+    /* 横方向の中央揃え */
+    /* margin-bottom: 150px; */
+}
+
+.search-form__pagenation {
+    position: absolute;    /* 位置指定のため必須 */
+    left: 70%;    /* 中央を画面の60%に置く基準位置 */
+    transform: translateX(-50%);    /* 自分の幅の半分だけ左に戻す */
+}
+
+.contact-table {
+    margin-top: 150px;
+}
+
+.contact-table__header {
+    width: 50%;
+    margin: 0 auto;
+    /* justify-content: center; */
+    background-color: #8b7968;
+    /* 横方向の中央揃え */
+    margin-bottom: 30px;
+}
+.contact-table__header-span {
+    color: #ffffff;
+    margin: 0 40px;
+}
+
+.contact-table__inner {
+    display: flex;
+    justify-content: center;
+    /* 横方向の中央揃え */
+}
 .contact-form__content {
     margin: 0 auto;
     padding: 30px 15px;

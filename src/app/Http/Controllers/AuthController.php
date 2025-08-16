@@ -39,7 +39,7 @@ class AuthController extends Controller
     //クエリビルダーのインスタンスを作成
     $query = Contact::query();
 
-    // 姓、名、フルネーム、email で検索
+    // フルネーム(部分一致なので姓単体でも名単体でも)、email で検索
     $query->where(function ($query_kw) use ($cleaned) {
       $query_kw->whereRaw("REPLACE(CONCAT(last_name, first_name), ' ', '') LIKE ?", ["%{$cleaned}%"])
         ->orWhere('email', 'LIKE', "%{$cleaned}%");

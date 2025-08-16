@@ -1,5 +1,6 @@
 .header {
-    background: #000;
+    background: #fff;
+    border-bottom: 1px solid black;
 }
 
 .header__inner {
@@ -9,8 +10,31 @@
 }
 
 .header__logo {
-    color: #fff;
+    color: #000;
     text-decoration: none;
     font-weight: bold;
     font-size: 24px;
+}
+
+.header__logo {
+    display: flex;
+    justify-content: center;
+    /* 左右中央寄せ */
+    align-items: center;
+    /* 上下中央寄せ */
+    height: 80px;
+    background-color: #ffffff;
+}
+
+.header-nav__item{
+    position: absolute;             /* 位置指定のため必須 */
+    top: 50px;
+    left: 70%;                      /* 中央を画面の60%に置く基準位置 */
+    transform: translateX(-50%);    /* 自分の幅の半分だけ左に戻す */
+}
+
+.header-nav__button {
+    width: 100px;
+    background-color: #f6f6f6;
+    padding: 10px;
 }
