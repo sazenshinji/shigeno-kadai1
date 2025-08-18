@@ -7,11 +7,11 @@
 @section('content')
 
 <!-- Page Heading【Admin】 -->
-<div class="contact-form__content">
-  <div class="contact-form__heading">
-    <h2>Admin</h2>
-  </div>
+<div class="admin-page__heading">
+  <h2>Admin</h2>
 </div>
+
+
 
 <!-- Search items and buttons -->
 <form class="search-form" action="/contacts/search" method="get" novalidate>
@@ -40,60 +40,58 @@
     <button class="search-form-srh__button-submit" type="submit">検索</button>
     <button class="search-form-rst__button-submit" type="submit" name="reset">リセット</button>
   </div>
-
-  <!-- Pagination buttons -->
-  <div class="search-form__pagenation">
-    {{ $contacts->appends(request()->query())->links() }}
-  </div>
-
 </form>
 
+<!-- Pagination buttons -->
+<div class="search-form__pagenation">
+  {{ $contacts->appends(request()->query())->links() }}
+</div>
+
+<div class="pagenation-space">
+</div>
 
 <!-- Contact table -->
-
 <!-- Contact table Header -->
 <div class="contact-table">
   <table class="contact-table__inner">
-    <tr>
-      <th class="contact-table__header">
+    <thead class="contact-table-header">
+      <tr>
+        <th class="contact-table__header-name">お名前</th>
+        <th class="contact-table__header-gender">性別</th>
+        <th class="contact-table__header-email">メールアドレス</th>
+        <th class="contact-table__header-category">お問い合わせの種類</th>
+        <th class="contact-table__header-sp">　</th>
+      </tr>
+    </thead>
 
-        <span class="contact-table__header-span">お名前</span>
-        <span class="contact-table__header-span">性別</span>
-        <span class="contact-table__header-span">メールアドレス</span>
-        <span class="contact-table__header-span">お問い合わせの種類</span>
-
-      </th>
-    </tr>
-
-    <!-- Contact table Item -->
-
-    @foreach ($contacts as $contact)
-    <tr>
-      <td class="contact-table__item">
-
-        <span class="update-form__itme-p">{{ $contact['last_name'] }}</span>
-        <span class="update-form__itme-p">{{ $contact['first_name']}}</span>
+    <tbody class="contact-table-data">
+      @foreach ($contacts as $contact)
+      <tr>
+        <td>{{ $contact['last_name'] }} {{'　'}} {{$contact['first_name']}}</td>
 
         @if ($contact['gender'] === 1)
-        <span>男性</span>
+        <td>男性</td>
         @elseif ($contact['gender'] === 2)
-        <span>女性</span>
+        <td>女性</td>
         @else
-        <span>その他</span>
+        <td>その他</td>
         @endif
 
-        <span class="update-form__itme-p">{{ $contact['email'] }}</span>
+        <td>{{ $contact['email'] }}</td>
 
-        <span class="update-form__itme-p">{{ $contact['category']['content'] }}</span>
+        <td>{{ $contact['category']['content'] }}</td>
 
-        <button class="btn" data-modal="modal-{{ $contact['id'] }}">詳細</button>
+        <td>
+          <button data-modal="modal-{{ $contact['id'] }}">詳細</button>
+        </td>
 
-      </td>
+      </tr>
+      @endforeach
+    </tbody>
 
-    </tr>
   </table>
-
 </div>
+
 
 <!-- Modal Window -->
 <div id="modal-{{ $contact['id'] }}" class="modal">
@@ -162,7 +160,7 @@
 <!-- Loading script for modal -->
 <script src="{{ asset('js/modalscript.js') }}"></script>
 
-@endforeach
+
 
 
 @endsection
