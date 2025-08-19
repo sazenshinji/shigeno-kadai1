@@ -17,6 +17,7 @@
 }
 */
 
+
 .contact-form__content {
     margin: 0 auto;
     padding: 30px 15px;
@@ -27,6 +28,72 @@
     margin-bottom: 40px;
     text-align: center;
 }
+
+.contact-form__group {
+    display: grid;
+    align-items: center;
+    margin-top: 32px;
+
+    grid-template-columns: 1fr 2fr;
+}
+
+.contact-form__required {
+    color: #FF9494;
+}
+
+.contact-form__input {
+    padding: 8px 16px;
+    background-color: #F4F4F4;
+    color: #BEB1A6;
+}
+
+.contact-form__name-inputs,
+.contact-form__tel-inputs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 32px;
+}
+
+.contact-form__name-input {
+    width: 100%;
+}
+
+/* エラーメッセージ */
+.contact-form__error-message {
+    margin-top: 8px;
+    color: #FF9494;
+
+    grid-column: 2;
+}
+
+.contact-form__name-group .contact-form__error-message {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 32px;
+}
+
+.contact-form__error-message-first-name,
+.contact-form__error-message-last-name {
+    width: 100%;
+}
+
+
+.contact-form__input--radio {
+    display: flex;
+    justify-content: left;
+}
+.contact-form__gender-option {
+    margin-right: 64px;
+}
+
+
+
+
+
 
 .form {
     margin: 0 auto;
@@ -47,6 +114,7 @@
     background: #fafafa;
     color: #aaa;
 }
+
 
 .form__error {
     height: 20px;

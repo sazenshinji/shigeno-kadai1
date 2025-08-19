@@ -11,69 +11,65 @@
   </div>
   <form class="form" action="/contacts/confirm" method="post" novalidate>
     @csrf
-    <div class="form__group">
-      <div class="form__group-title">
-        <span class="form__label--item">お名前</span>
-        <span class="form__label--required">※</span>
-      </div>
-      <div class="form__group-content">
-        <div class="form__input--text">
-          <input type="text" name="last_name" placeholder="例：山田" value="{{ old('last_name') ?? $contact['last_name'] }}" />
-          <input type="text" name="first_name" placeholder="例：太郎" value="{{ old('first_name') ?? $contact['first_name'] }}" />
-        </div>
-        <div class="form__error">
-          <!--バリデーション機能を実装したら記述します。-->
-          @error('last_name')
-          {{ $message }}
-          @enderror
-        </div>
-        <div class="form__error">
-          @error('first_name')
-          {{ $message }}
-          @enderror
-        </div>
+    <div class="contact-form__group">
+      <label class="contact-form__label" for="name">お名前
+        <span class="contact-form__required">※</span>
+      </label>
 
+      <div class="contact-form__name-inputs">
+        <input class="contact-form__input contact-form__name-input" type="text" name="last_name" id="name" placeholder="例：山田" value="{{ old('last_name') ?? $contact['last_name'] }}" />
+        <input class="contact-form__input contact-form__name-input" type="text" name="first_name" id="name" placeholder="例：太郎" value="{{ old('first_name') ?? $contact['first_name'] }}" />
+      </div>
+
+      <div class="contact-form__error-message">
+        @if ($errors->has('first_name'))
+        <p class="contact-form__error-message-first-name">{{$errors->first('first_name')}}</p>
+        @endif
+        @if ($errors->has('last_name'))
+        <p class="contact-form__error-message-last-name">{{$errors->first('last_name')}}</p>
+        @endif
       </div>
     </div>
 
-    <div class="form__group">
-      <div class="form__group-title">
-        <span class="form__label--item">性別</span>
-        <span class="form__label--required">※</span>
-      </div>
-      <div class="form__group-content">
-        <div class="form__input--radio">
+    <div class="contact-form__group">
+      <label class="contact-form__label">
+        性別<span class="contact-form__required">※</span>
+      </label>
+
+      <div class="contact-form__input--radio">
+        <div class="contact-form__gender-option">
           <input type="radio" name="gender" value="1" {{ old('gender' , $contact['gender'] ?? '') === '1' ? 'checked' : '' }}> 男性
+        </div>
+        <div class="contact-form__gender-option">
           <input type="radio" name="gender" value="2" {{ old('gender' , $contact['gender'] ?? '') === '2' ? 'checked' : '' }}> 女性
+        </div>
+        <div class="contact-form__gender-option">
           <input type="radio" name="gender" value="3" {{ old('gender' , $contact['gender'] ?? '') === '3' ? 'checked' : '' }}> その他
         </div>
-        <div class="form__error">
-          <!--バリデーション機能を実装したら記述します。-->
-          @error('gender')
-          {{ $message }}
-          @enderror
-
-        </div>
+      </div>
+      <div class="form__error">
+        <!--バリデーション機能を実装したら記述します。-->
+        @error('gender')
+        {{ $message }}
+        @enderror
       </div>
     </div>
 
-    <div class="form__group">
-      <div class="form__group-title">
-        <span class="form__label--item">メールアドレス</span>
-        <span class="form__label--required">※</span>
-      </div>
-      <div class="form__group-content">
-        <div class="form__input--text">
-          <input type="email" name="email" placeholder="例：test@example.com" value="{{ old('email') ?? $contact['email'] }}" />
-        </div>
-        <div class="form__error">
-          <!--バリデーション機能を実装したら記述します。-->
+    <div class="contact-form__group">
+      <label class="contact-form__label" for="email">
+        メールアドレス<span class="contact-form__required">※</span>
+      </label>
+      <input class="contact-form__input" type="email" name="email" id="email" placeholder="例：test@example.com" value="{{ old('email') ?? $contact['email'] }}" />
+      <div class="form__error">
+        <!--バリデーション機能を実装したら記述します。-->
+        <p class="contact-form__error-message">
           @error('email')
           {{ $message }}
           @enderror
-        </div>
+        </p>
       </div>
     </div>
+
 
     <div class="form__group">
       <div class="form__group-title">
