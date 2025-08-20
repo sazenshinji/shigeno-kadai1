@@ -18,15 +18,17 @@
 */
 
 
-.contact-form__content {
-    margin: 0 auto;
-    padding: 30px 15px;
-    max-width: 1230px;
-}
+
 
 .contact-form__heading {
     margin-bottom: 40px;
     text-align: center;
+}
+
+.contact-form__inner {
+    margin: 32px auto 0;
+    width: 74%;
+    font-size: 16px;
 }
 
 .contact-form__group {
@@ -36,6 +38,7 @@
 
     grid-template-columns: 1fr 2fr;
 }
+
 
 .contact-form__required {
     color: #FF9494;
@@ -60,6 +63,46 @@
     width: 100%;
 }
 
+.contact-form__tel-input {
+    width: calc(100%/3);
+    text-align: center;
+}
+
+.contact-form__select-inner {
+    position: relative;
+}
+
+.contact-form__select-inner::after {
+    position: absolute;
+    top: 50%;
+    left: 42%;
+    width: 0;
+    height: 0;
+    border-top: 12px solid #BEB1A6;
+    border-right: 12px solid transparent;
+    border-left: 12px solid transparent;
+    content: "";
+    transform: translateY(-50%);
+}
+
+.contact-form__select {
+    padding: 8px 16px;
+    width: 50%;
+    background-color: #F4F4F4;
+    color: #BEB1A6;
+}
+
+.contact-form__textarea {
+    padding: 8px 16px;
+    height: 144px;
+    background-color: #F4F4F4;
+    color: #BEB1A6;
+}
+
+.contact-form__btn {
+    margin: 32px auto 0;
+}
+
 /* エラーメッセージ */
 .contact-form__error-message {
     margin-top: 8px;
@@ -82,6 +125,7 @@
 }
 
 
+
 .contact-form__input--radio {
     display: flex;
     justify-content: left;
@@ -90,73 +134,3 @@
     margin-right: 64px;
 }
 
-
-
-
-
-
-.form {
-    margin: 0 auto;
-    width: 70%;
-    text-align: center;
-}
-
-.form__group {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-}
-
-.form__label--required {
-    margin-left: 5px;
-    padding: 4px 6px;
-    border-radius: 3px;
-    background: #fafafa;
-    color: #aaa;
-}
-
-
-.form__error {
-    height: 20px;
-    color: #ff0000;
-    text-align: left;
-}
-
-.form__input--text input,
-.form__input--textarea textarea {
-    padding: 10px;
-    width: 600px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-
-    appearance: none;
-}
-
-.form__input--text input {
-    height: 40px;
-}
-
-.form__input--textarea textarea {
-    height: 180px;
-}
-
-.form__input--radio input {
-    padding: 10px;
-    width: 600px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-}
-.form__button {
-    margin-top: 30px;
-}
-
-.form__button-submit {
-    padding: 10px;
-    width: 30%;
-    height: 50px;
-    border: none;
-    border-radius: 3px;
-    background: #000;
-    color: #fff;
-    cursor: pointer;
-}
