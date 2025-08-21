@@ -84,8 +84,6 @@ svg.w-5.h-5 {
 .contact-table {
     margin-top: 120px;
 }
-
-
 .contact-table__inner {
     width: 60%;                 /* ←幅を指定（%でも可） */
     margin: 0 auto;             /* 左右オートで中央寄せ */

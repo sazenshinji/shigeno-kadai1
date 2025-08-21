@@ -63,9 +63,10 @@
         <th class="contact-table__header-sp">　</th>
       </tr>
     </thead>
-
     <tbody class="contact-table-data">
       @foreach ($contacts as $contact)
+
+
       <tr>
         <td>{{ $contact['last_name'] }} {{'　'}} {{$contact['first_name']}}</td>
 
@@ -85,6 +86,74 @@
           <button data-modal="modal-{{ $contact['id'] }}">詳細</button>
         </td>
 
+
+
+
+
+
+
+        <!-- Modal Window -->
+        <div id="modal-{{ $contact['id'] }}" class="modal">
+          <div class="modal-content">
+            <span class="close" data-close="modal-{{ $contact['id'] }}">&times;</span>
+
+            <form class="modal__detail-form" action="/delete" method="post">
+              @csrf
+
+              <div class="modal-content-neme">
+                <span>お名前</span>
+                <span>　　</span>
+                <span>{{ $contact['last_name'] }}</span>
+                <span>{{ $contact['first_name']}}</span>
+              </div>
+              <div class="modal-content-gender">
+                <span>性別</span>
+                <span>　　</span>
+                @if ($contact['gender'] === 1)
+                <span>男性</span>
+                @elseif ($contact['gender'] === 2)
+                <span>女性</span>
+                @else
+                <span>その他</span>
+                @endif
+              </div>
+              <div class="modal-content-email">
+                <span>メールアドレス</span>
+                <span>　　</span>
+                <span class="update-form__itme-p">{{ $contact['email'] }}</span>
+              </div>
+              <div class="modal-content-tel">
+                <span>電話番号</span>
+                <span>　　</span>
+                <span class="update-form__itme-p">{{ $contact['tel'] }}</span>
+              </div>
+              <div class="modal-content-address">
+                <span>住所</span>
+                <span>　　</span>
+                <span class="update-form__itme-p">{{ $contact['address'] }}</span>
+              </div>
+              <div class="modal-content-building">
+                <span>建物名</span>
+                <span>　　</span>
+                <span class="update-form__itme-p">{{ $contact['building'] }}</span>
+              </div>
+              <div class="modal-content-category_id">
+                <span>お問い合わせの種類</span>
+                <span>　　</span>
+                <span class="update-form__itme-p">{{ $contact['category']['content'] }}</span>
+              </div>
+              <div class="modal-content-detail">
+                <span>お問い合わせ内容</span>
+                <span>　　</span>
+                <span class="update-form__itme-p">{{ $contact['detail'] }}</span>
+              </div>
+
+              <input type="hidden" name="id" value="{{ $contact->id }}">
+              <input class="modal-form__delete-btn btn" type="submit" value="削除">
+            </form>
+          </div>
+        </div>
+
       </tr>
       @endforeach
     </tbody>
@@ -92,70 +161,6 @@
   </table>
 </div>
 
-
-<!-- Modal Window -->
-<div id="modal-{{ $contact['id'] }}" class="modal">
-  <div class="modal-content">
-    <span class="close" data-close="modal-{{ $contact['id'] }}">&times;</span>
-
-    <form class="modal__detail-form" action="/delete" method="post">
-      @csrf
-
-      <div class="modal-content-neme">
-        <span>お名前</span>
-        <span>　　</span>
-        <span>{{ $contact['last_name'] }}</span>
-        <span>{{ $contact['first_name']}}</span>
-      </div>
-      <div class="modal-content-gender">
-        <span>性別</span>
-        <span>　　</span>
-        @if ($contact['gender'] === 1)
-        <span>男性</span>
-        @elseif ($contact['gender'] === 2)
-        <span>女性</span>
-        @else
-        <span>その他</span>
-        @endif
-      </div>
-      <div class="modal-content-email">
-        <span>メールアドレス</span>
-        <span>　　</span>
-        <span class="update-form__itme-p">{{ $contact['email'] }}</span>
-      </div>
-      <div class="modal-content-tel">
-        <span>電話番号</span>
-        <span>　　</span>
-        <span class="update-form__itme-p">{{ $contact['tel'] }}</span>
-      </div>
-      <div class="modal-content-address">
-        <span>住所</span>
-        <span>　　</span>
-        <span class="update-form__itme-p">{{ $contact['address'] }}</span>
-      </div>
-      <div class="modal-content-building">
-        <span>建物名</span>
-        <span>　　</span>
-        <span class="update-form__itme-p">{{ $contact['building'] }}</span>
-      </div>
-      <div class="modal-content-category_id">
-        <span>お問い合わせの種類</span>
-        <span>　　</span>
-        <span class="update-form__itme-p">{{ $contact['category']['content'] }}</span>
-      </div>
-      <div class="modal-content-detail">
-        <span>お問い合わせ内容</span>
-        <span>　　</span>
-        <span class="update-form__itme-p">{{ $contact['detail'] }}</span>
-      </div>
-
-      <input type="hidden" name="id" value="{{ $contact->id }}">
-      <input class="modal-form__delete-btn btn" type="submit" value="削除">
-
-    </form>
-
-  </div>
-</div>
 
 <!-- Loading script for modal -->
 <script src="{{ asset('js/modalscript.js') }}"></script>
